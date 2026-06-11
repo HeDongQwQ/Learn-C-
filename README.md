@@ -1,7 +1,9 @@
 - # 从现在开始学习C++
 - ## 配置Cursor的C++环境
   1.下载msys64安装并配置
+  
   2.在CurSor下载C++插件
+  
   3.创建项目添加.vscode文件夹，在文件夹中添加launch.json，settings.json，tasks.json文件并分别键入：
 	launch.json
 	```json
