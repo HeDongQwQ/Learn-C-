@@ -22,7 +22,7 @@
 		"environment": [],
 		"externalConsole": false,
 		"MIMode": "gdb", // 调试器模式若使用MinGW则设为gdb
-		"miDebuggerPath": "路径“, // 指定gdb.exe调试器路径
+		"miDebuggerPath": "路径", // 指定gdb.exe调试器路径
 		"preLaunchTask": "Build C++"  // 调试前自动执行的任务名称
 			}
 		]
