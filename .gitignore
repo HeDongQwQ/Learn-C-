@@ -5,7 +5,6 @@
 *.out
 
 # IDE specific files
-# .vscode/  # 注释掉这一行，允许上传 .vscode 文件夹
 # .idea/
 
 # OS files
