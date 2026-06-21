@@ -9,6 +9,7 @@ int main(){
             count++;
         }
     }
+
     cout << "字符串中 a 的个数是：" << count << endl;
     return 0;
 }
