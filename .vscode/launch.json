@@ -2,18 +2,18 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug C++", // 配置名称
+            "name": "Debug C++", // 配置名称，按 F5 时使用此项
             "type": "cppdbg",
             "request": "launch",
-            "program": "${fileDirname}/${fileBasenameNoExtension}.exe", // 要调试的程序路径
-            "args": [],
-            "stopAtEntry": false,
-            "cwd": "${fileDirname}",
+            "program": "${fileDirname}/${fileBasenameNoExtension}.exe", // 要运行的 exe，与 tasks.json 输出路径一致
+            "args": [], // 传给程序的命令行参数
+            "stopAtEntry": false, // 不在 main 函数入口自动暂停
+            "cwd": "${fileDirname}", // 程序工作目录，设为源文件所在文件夹
             "environment": [],
-            "externalConsole": false,
-            "MIMode": "gdb", // 调试器模式若使用MinGW则设为gdb
-            "miDebuggerPath": "D:/app/msys64/ucrt64/bin/gdb.exe", // 指定gdb调试器路径
-            "preLaunchTask": "Build C++" // 调试前自动执行的任务名称
+            "console": "integratedTerminal", // 在集成终端中运行，支持 cin 输入（比调试控制台更适合交互程序）
+            "MIMode": "gdb", // 使用 gdb 调试器（MinGW 环境）
+            "miDebuggerPath": "D:/app/msys64/ucrt64/bin/gdb.exe", // gdb 可执行文件路径
+            "preLaunchTask": "Build C++" // 按 F5 前先执行 tasks.json 中的编译任务
         }
     ]
 }

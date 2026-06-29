@@ -1,5 +1,0 @@
-{
-    "clangd.arguments": [
-        "--query-driver=C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v12.8/bin/nvcc.exe"
-    ]
-}

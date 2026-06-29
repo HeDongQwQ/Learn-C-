@@ -2,20 +2,21 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Build C++", // 任务名称
+            "label": "Build C++", // 任务名称，需与 launch.json 中 preLaunchTask 一致
             "type": "shell",
-            "command": "g++", // 编译器命令，需确保已在PATH中
+            "command": "powershell", // 用 PowerShell 执行编译脚本，以便自动查找配套 .cpp 文件
             "args": [
-                "-std=c++17", "-g", // 使用C++17标准并生成调试信息
-                "${file}",          // 当前打开的源文件
-                "-o",               // 指定输出文件
-                "${fileDirname}/${fileBasenameNoExtension}.exe" // 输出文件名
+                "-NoProfile",
+                "-Command",
+                // 编译逻辑：先编译当前文件，再自动链接同目录下的配套源文件（如 fangfa2.cpp + fangfa2issum.cpp）
+                // 配套文件命名规则：以主文件名开头，后面跟字母或下划线，例如 fangfa2issum.cpp
+                "$main='${file}'; $dir='${fileDirname}'; $base='${fileBasenameNoExtension}'; $out='${fileDirname}/${fileBasenameNoExtension}.exe'; $sources=@($main); Get-ChildItem -Path $dir -Filter ($base + '*.cpp') | Where-Object { $_.Name -ne '${fileBasename}' -and $_.Name -match ('^' + [regex]::Escape($base) + '[a-zA-Z_].*\\.cpp$') } | ForEach-Object { $sources += $_.FullName }; & g++ -std=c++17 -g @sources -o $out; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }"
             ],
             "group": {
                 "kind": "build",
-                "isDefault": true   // 设为默认构建任务（按 Ctrl+Shift+B 触发）
+                "isDefault": true // 设为默认构建任务，Ctrl+Shift+B 也会触发
             },
-            "problemMatcher": ["$gcc"]
+            "problemMatcher": ["$gcc"] // 解析 g++ 编译错误并在编辑器中显示
         }
     ]
 }
